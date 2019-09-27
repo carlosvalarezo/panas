@@ -1,5 +1,6 @@
 package com.panas;
 
+import com.facebook.react.PackageList;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.reactnativenavigation.NavigationApplication;
@@ -29,9 +30,12 @@ public class MainApplication extends NavigationApplication {
     }
 
     protected List<ReactPackage> getPackages() {
+//        List<ReactPackage> packages = new PackageList(this).getPackages();
         // Add additional packages you require here
         // No need to add RnnPackage and MainReactPackage
+
         return Arrays.<ReactPackage>asList(
+                new JavaActivityPackage()
                 // eg. new VectorIconsPackage()
         );
     }

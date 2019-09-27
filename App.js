@@ -8,6 +8,7 @@
 
 import React, {Component} from 'react';
 import {View, Text, Button} from 'react-native';
+import JavaActivity from './src/JavaActivity';
 
 import {Navigation} from 'react-native-navigation';
 
@@ -25,33 +26,23 @@ export default class App extends Component {
     });
   }
 
-  openJavaView() {
-    console.warn('opens java activity');
-
-    //        Navigation.push(this.props.componentId, {
-    //              component: {
-    //                name: 'navigation.Two'
-    //              }
-    //            });
-  }
-
-  openKotlinView() {
-    console.warn('opens Kotlin activity');
-
-    //        Navigation.push(this.props.componentId, {
-    //              component: {
-    //                name: 'navigation.Two'
-    //              }
-    //            });
-  }
-
   render() {
     return (
       <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
         <Text>Hello, world App!</Text>
         <Button title="Show React Native" onPress={this.openRNView} />
-        <Button title="Show Java" onPress={this.openJavaView} />
-        <Button title="Show Kotlin" onPress={this.openKotlinView} />
+        <Button
+          title="Show Java"
+          onPress={() => JavaActivity.openJavaActivity()}
+        />
+        <Button
+          title="Show Java message"
+          onPress={() =>
+            JavaActivity.returnStringFromJava('Hola', result => {
+              console.warn(result);
+            })
+          }
+        />
       </View>
     );
   }
