@@ -6,8 +6,9 @@
  * @flow
  */
 
-import React from 'react';
-import {View, Text, Button} from 'react-native';
+import React, {useState} from 'react';
+import {View} from 'react-native';
+import {Card, Input, Button} from 'react-native-elements';
 import JavaActivity from './src/JavaActivity';
 
 import {Navigation} from 'react-native-navigation';
@@ -21,9 +22,21 @@ const openRNView = props => {
 };
 
 const App = props => {
+  const [phoneNumber, setPhoneNumber] = useState('');
+
   return (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text>Hello, world App!</Text>
+      <Card title="Login with phone to panas!">
+        <Input
+          placeholder="enter your phone number"
+          onChangeText={value => setPhoneNumber(value)}
+          value={phoneNumber}
+        />
+        <Button
+          title="Show phoneNumber"
+          onPress={() => console.warn(phoneNumber)}
+        />
+      </Card>
 
       <Button title="Show React Native" onPress={() => openRNView(props)} />
       <Button
