@@ -43,7 +43,7 @@ public class LoginModule extends ReactContextBaseJavaModule {
             @Override
             public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
                 mVerificationInProgress = false;
-                signInWithPhoneAuthCredential(credential);
+//                signInWithPhoneAuthCredential(credential);
                 phoneVerified[0] = true;
 
             }
