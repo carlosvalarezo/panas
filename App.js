@@ -10,6 +10,7 @@ import React, {useState} from 'react';
 import {View} from 'react-native';
 import {Card, Input, Button} from 'react-native-elements';
 import JavaActivity from './src/JavaActivity';
+import Login from './src/Login';
 
 import {Navigation} from 'react-native-navigation';
 
@@ -22,19 +23,21 @@ const openRNView = props => {
 };
 
 const App = props => {
-  const [phoneNumber, setPhoneNumber] = useState('');
+  const [text, setText] = useState('');
 
   return (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Card title="Login with phone to panas!">
+      <Card title="Enter text!">
         <Input
           placeholder="enter your phone number"
-          onChangeText={value => setPhoneNumber(value)}
-          value={phoneNumber}
+          onChangeText={value => setText(value)}
+          value={text}
         />
         <Button
-          title="Show phoneNumber"
-          onPress={() => console.warn(phoneNumber)}
+          title="Show text"
+          onPress={() => Login.invokeFirebaseFunction(text, result => {
+            console.warn(result);
+          })}
         />
       </Card>
 

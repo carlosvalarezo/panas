@@ -34,7 +34,8 @@ public class MainApplication extends NavigationApplication {
         // No need to add RnnPackage and MainReactPackage
 
         return Arrays.<ReactPackage>asList(
-                new JavaActivityPackage()
+                new JavaActivityPackage(),
+                new LoginPackage()
                 // eg. new VectorIconsPackage()
         );
     }

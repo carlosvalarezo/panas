@@ -1,32 +1,32 @@
 package com.panas;
 
-import android.app.Activity;
-
-import androidx.annotation.NonNull;
 
 import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
-import com.google.firebase.FirebaseException;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.PhoneAuthCredential;
-import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.functions.FirebaseFunctions;
+import com.google.firebase.functions.FirebaseFunctionsException;
+import com.google.firebase.functions.HttpsCallableResult;
 
-import java.util.concurrent.TimeUnit;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.annotation.Nonnull;
 
+import androidx.annotation.NonNull;
+
 public class LoginModule extends ReactContextBaseJavaModule {
-
-    private FirebaseAuth mAuth;
-    private boolean mVerificationInProgress = false;
-    private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
-
 
     public LoginModule(ReactApplicationContext reactContext) {
         super(reactContext);
     }
+
+    private FirebaseFunctions mFunctions;
+    final String[] result = {""};
 
     @Nonnull
     @Override
@@ -34,39 +34,43 @@ public class LoginModule extends ReactContextBaseJavaModule {
         return "Login";
     }
 
-    private boolean[] verifyPhoneNumber2(){
-        mAuth = FirebaseAuth.getInstance();
-        final boolean[] phoneVerified = {false};
+    private Task<String> addMessage(String text) {
+        // Create the arguments to the callable function.
+        Map<String, Object> data = new HashMap<>();
+        data.put("text", text);
 
-        mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+        mFunctions = FirebaseFunctions.getInstance();
 
-            @Override
-            public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
-                mVerificationInProgress = false;
-//                signInWithPhoneAuthCredential(credential);
-                phoneVerified[0] = true;
-
-            }
-
-            @Override
-            public void onVerificationFailed(@NonNull FirebaseException e) {
-                phoneVerified[0] = false;
-            }
-        };
-
-        return phoneVerified;
+        return mFunctions
+                .getHttpsCallable("addMessage")
+                .call(data)
+                .continueWith(new Continuation<HttpsCallableResult, String>() {
+                    @Override
+                    public String then(@NonNull Task<HttpsCallableResult> task) throws Exception {
+                        Map<String, Object> result = (Map<String, Object>) task.getResult().getData();
+                        return (String) result.get("data");
+                    }
+                });
     }
 
     @ReactMethod
-    public void startPhoneNumberVerification(String phoneNumber, Callback jsCallback){
+    public void invokeFirebaseFunction(String phoneNumber, Callback jsCallback){
 
-        //este metodo debe estar en un activity
-
-        long a = 60;
-//        Activity activity = this;
-        PhoneAuthProvider.getInstance().verifyPhoneNumber(phoneNumber, a,TimeUnit.SECONDS,new Activity(),mCallbacks  );
-
-        jsCallback.invoke(verifyPhoneNumber2()[0]);
-
+        addMessage(phoneNumber)
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (!task.isSuccessful()) {
+                            Exception e = task.getException();
+                            if (e instanceof FirebaseFunctionsException) {
+                                FirebaseFunctionsException ffe = (FirebaseFunctionsException) e;
+                                FirebaseFunctionsException.Code code = ffe.getCode();
+                                Object details = ffe.getDetails();
+                            }
+                        }
+                        result[0] = task.getResult();
+                        jsCallback.invoke(result[0]);
+                    }
+                });
     }
 }
