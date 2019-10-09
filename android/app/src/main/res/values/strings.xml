@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">panas</string>
     <string name="title_activity_java">JavaActivity</string>
+    <string name="title_activity_friends_maps">Location of friends</string>
 </resources>

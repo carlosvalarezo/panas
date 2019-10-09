@@ -35,7 +35,8 @@ public class MainApplication extends NavigationApplication {
 
         return Arrays.<ReactPackage>asList(
                 new JavaActivityPackage(),
-                new LoginPackage()
+                new LoginPackage(),
+                new FriendsPackage()
                 // eg. new VectorIconsPackage()
         );
     }

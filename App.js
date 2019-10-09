@@ -11,6 +11,7 @@ import {View} from 'react-native';
 import {Card, Input, Button} from 'react-native-elements';
 import JavaActivity from './src/JavaActivity';
 import Login from './src/Login';
+import Friends from './src/Friends';
 
 import {Navigation} from 'react-native-navigation';
 
@@ -35,9 +36,19 @@ const App = props => {
         />
         <Button
           title="Show text"
-          onPress={() => Login.invokeFirebaseFunction(text, result => {
-            console.warn(result);
-          })}
+          onPress={() =>
+            Login.invokeFirebaseFunction(text, result => {
+              console.warn(result);
+            })
+          }
+        />
+        <Button
+          title="Get friends"
+          onPress={() =>
+            Friends.getFriends(result => {
+              console.warn(result);
+            })
+          }
         />
       </Card>
 
