@@ -39,9 +39,18 @@ public class FriendsMapsActivity extends FragmentActivity implements OnMapReadyC
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+        double latitude = (Math.random()*((-34+36)+1))-34;
+        double longitude = (Math.random()*((151-145)+1))+145;
+
+        System.out.println("**********" + latitude);
+        System.out.println("**********" + longitude);
+
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(-34, 151);
+        LatLng other = new LatLng(latitude, longitude);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        mMap.addMarker(new MarkerOptions().position(other).title("Marker in Other"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(other, 5));
+//        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(other, 5));
     }
 }
