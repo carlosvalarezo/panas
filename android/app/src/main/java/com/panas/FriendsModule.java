@@ -32,22 +32,15 @@ public class FriendsModule extends ReactContextBaseJavaModule {
     }
 
     private Task<String> requestFriends() {
-        System.out.println("requestFriends starts........*****************");
-
-        // Create the arguments to the callable function.
-        Map<String, Object> data = new HashMap<>();
-        data.put("name", "lorenxo ");
-
         mFunctions = FirebaseFunctions.getInstance();
 
         return mFunctions
                 .getHttpsCallable("getFriends")
-                .call(data)
+                .call()
                 .continueWith(new Continuation<HttpsCallableResult, String>() {
                     @Override
                     public String then(@NonNull Task<HttpsCallableResult> task) throws Exception {
                         Map<String, Object> result = (Map<String, Object>) task.getResult().getData();
-                        System.out.println("task........***************** " + result);
                         return result.get("results").toString();
                     }
                 });
@@ -55,8 +48,6 @@ public class FriendsModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void getFriends(Callback jsCallback){
-        System.out.println("getFriends starts........*****************");
-
         requestFriends()
                 .addOnCompleteListener(new OnCompleteListener<String>() {
                     @Override
@@ -64,8 +55,6 @@ public class FriendsModule extends ReactContextBaseJavaModule {
                         if (!task.isSuccessful()) {
                             Exception e = task.getException();
                             if (e instanceof FirebaseFunctionsException) {
-                                System.out.println("Error en firebase........***************** " + e);
-
                                 FirebaseFunctionsException ffe = (FirebaseFunctionsException) e;
                                 FirebaseFunctionsException.Code code = ffe.getCode();
                                 Object details = ffe.getDetails();
