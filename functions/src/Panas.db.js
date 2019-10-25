@@ -1,4 +1,4 @@
-const friendsDb = {
+const PanasDb = {
   results: [
     {
       gender: 'female',
@@ -285,4 +285,4 @@ const friendsDb = {
   },
 };
 
-module.exports = friendsDb;
+module.exports = PanasDb;

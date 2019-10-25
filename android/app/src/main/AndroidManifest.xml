@@ -24,7 +24,7 @@
              You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
         <activity
-            android:name=".FriendsMapsActivity"
+            android:name=".PanasMapActivity"
             android:label="@string/title_activity_friends_maps"></activity>
 
         <activity

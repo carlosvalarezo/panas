@@ -11,31 +11,30 @@ import com.google.firebase.functions.FirebaseFunctions;
 import com.google.firebase.functions.FirebaseFunctionsException;
 import com.google.firebase.functions.HttpsCallableResult;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import androidx.annotation.NonNull;
 
-public class FriendsModule extends ReactContextBaseJavaModule {
+public class PanasModule extends ReactContextBaseJavaModule {
 
     private FirebaseFunctions mFunctions;
     final String[] result = {""};
 
-    public FriendsModule(@NonNull ReactApplicationContext reactContext) {
+    public PanasModule(@NonNull ReactApplicationContext reactContext) {
         super(reactContext);
     }
 
     @NonNull
     @Override
     public String getName() {
-        return "Friends";
+        return "Panas";
     }
 
-    private Task<String> requestFriends() {
+    private Task<String> requestPanas() {
         mFunctions = FirebaseFunctions.getInstance();
 
         return mFunctions
-                .getHttpsCallable("getFriends")
+                .getHttpsCallable("getPanas")
                 .call()
                 .continueWith(new Continuation<HttpsCallableResult, String>() {
                     @Override
@@ -47,8 +46,8 @@ public class FriendsModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void getFriends(Callback jsCallback){
-        requestFriends()
+    public void getPanas(Callback jsCallback){
+        requestPanas()
                 .addOnCompleteListener(new OnCompleteListener<String>() {
                     @Override
                     public void onComplete(@NonNull Task<String> task) {

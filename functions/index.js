@@ -1,9 +1,9 @@
 const functions = require('firebase-functions');
-const Friends = require('./src/Friends');
+const Panas = require('./src/Panas');
 
-exports.getFriends = functions.https.onCall(() => {
-  const friends = Friends();
-  return friends;
+exports.getPanas = functions.https.onCall(() => {
+  const panas = Panas();
+  return panas;
 });
 
 exports.getHello = functions.https.onCall(name => {

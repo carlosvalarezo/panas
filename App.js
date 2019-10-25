@@ -11,7 +11,7 @@ import {View} from 'react-native';
 import {Card, Input, Button} from 'react-native-elements';
 import JavaActivity from './src/JavaActivity';
 import Login from './src/Login';
-import Friends from './src/Friends';
+import Panas from './src/Panas';
 
 import {Navigation} from 'react-native-navigation';
 
@@ -43,9 +43,9 @@ const App = props => {
           }
         />
         <Button
-          title="Get friends"
+          title="Get panas"
           onPress={() =>
-            Friends.getFriends(result => {
+            Panas.getPanas(result => {
               console.warn(result);
             })
           }

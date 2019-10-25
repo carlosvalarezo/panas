@@ -1,4 +1,4 @@
 package com.panas;
 
-public class Friend {
+public class Pana {
 }
