@@ -1,20 +1,58 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
+import React, {useState} from 'react';
+import {View} from 'react-native';
+import {Card, Input, Button} from 'react-native-elements';
+import JavaActivity from './JavaActivity';
+import Login from './Login';
+import Panas from './Panas';
 
-import React from 'react';
-import {View, Text} from 'react-native';
+import {Navigation} from 'react-native-navigation';
 
-const Two = props => {
+const App = props => {
+  const [text, setText] = useState('');
+
   return (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text>Hello, world Two!</Text>
+      <Card title="Enter text!">
+        <Input
+          placeholder="enter your phone number"
+          onChangeText={value => setText(value)}
+          value={text}
+        />
+
+        <Button
+          title="Show text"
+          onPress={() =>
+            Login.invokeFirebaseFunction(text, result => {
+              console.warn(result);
+            })
+          }
+        />
+
+        <Button
+          title="Get panas"
+          onPress={() =>
+            Panas.getPanas(result => {
+              console.warn(result);
+            })
+          }
+        />
+      </Card>
+
+      <Button
+        title="Show Java"
+        onPress={() => JavaActivity.openJavaActivity()}
+      />
+
+      <Button
+        title="Show Java message"
+        onPress={() =>
+          JavaActivity.returnStringFromJava('Hola', result => {
+            console.warn(result);
+          })
+        }
+      />
     </View>
   );
 };
 
-export default Two;
+export default App;

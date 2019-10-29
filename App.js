@@ -6,64 +6,46 @@
  * @flow
  */
 
-import React, {useState} from 'react';
-import {View} from 'react-native';
-import {Card, Input, Button} from 'react-native-elements';
-import JavaActivity from './src/JavaActivity';
-import Login from './src/Login';
-import Panas from './src/Panas';
+import React from 'react';
 
+import styles from './src/styles';
+import {Text, View, TextInput} from 'react-native';
+import {Button} from 'react-native-elements';
 import {Navigation} from 'react-native-navigation';
 
 const openRNView = props => {
   Navigation.push(props.componentId, {
     component: {
       name: 'navigation.Two',
+      options: {
+        topBar: {
+          visible: false,
+          height: 0,
+        },
+      },
     },
   });
 };
 
 const App = props => {
-  const [text, setText] = useState('');
-
   return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Card title="Enter text!">
-        <Input
-          placeholder="enter your phone number"
-          onChangeText={value => setText(value)}
-          value={text}
-        />
-        <Button
-          title="Show text"
-          onPress={() =>
-            Login.invokeFirebaseFunction(text, result => {
-              console.warn(result);
-            })
-          }
-        />
-        <Button
-          title="Get panas"
-          onPress={() =>
-            Panas.getPanas(result => {
-              console.warn(result);
-            })
-          }
-        />
-      </Card>
-
-      <Button title="Show React Native" onPress={() => openRNView(props)} />
-      <Button
-        title="Show Java"
-        onPress={() => JavaActivity.openJavaActivity()}
+    <View style={styles.loginFormView}>
+      <Text style={styles.logoText}>panas</Text>
+      <TextInput
+        placeholder="usuario"
+        placeholderColor="#c4c3cb"
+        style={styles.loginFormTextInput}
+      />
+      <TextInput
+        placeholder="clave"
+        placeholderColor="#c4c3cb"
+        style={styles.loginFormTextInput}
+        secureTextEntry={true}
       />
       <Button
-        title="Show Java message"
-        onPress={() =>
-          JavaActivity.returnStringFromJava('Hola', result => {
-            console.warn(result);
-          })
-        }
+        buttonStyle={styles.loginButton}
+        onPress={() => openRNView(props)}
+        title="entrar"
       />
     </View>
   );
