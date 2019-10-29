@@ -16,3 +16,15 @@ exports.addMessage = functions.https.onCall(data => {
     data: text,
   };
 });
+
+exports.panasLogin = functions.https.onRequest((request, response) => {
+  const {username, password} = request.body;
+  if (username === 'myusername' && password === 'mysuperpassword123') {
+    response.status(200).json({
+      message: success,
+    });
+  }
+  response.status(200).json({
+    message: 'error on login',
+  });
+});
