@@ -7,6 +7,20 @@ import Panas from './Panas';
 
 import {Navigation} from 'react-native-navigation';
 
+const openProfile = props => {
+  Navigation.push(props.componentId, {
+    component: {
+      name: 'navigation.Profile',
+      options: {
+        topBar: {
+          visible: false,
+          height: 0,
+        },
+      },
+    },
+  });
+};
+
 const App = props => {
   const [text, setText] = useState('');
 
@@ -35,6 +49,12 @@ const App = props => {
               console.warn(result);
             })
           }
+        />
+
+        <Button
+          // buttonStyle={styles.loginButton}
+          onPress={() => openProfile(props)}
+          title="open profile"
         />
       </Card>
 
