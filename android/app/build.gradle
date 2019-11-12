@@ -80,6 +80,7 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-vector-icons')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'com.facebook.react:react-native:0.61.1'   // From node_modules
     implementation project(':react-native-navigation')

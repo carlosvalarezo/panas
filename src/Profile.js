@@ -55,9 +55,7 @@ const renderItem = ({item}) => (
   />
 );
 
-const renderContactHeader = list => {
-  console.warn(list);
-  //   const {avatar, name, bio} = this.props;
+const renderContactHeader = (panasList, currentPana) => {
   return (
     <View>
       <View style={styles.headerContainer}>
@@ -113,7 +111,7 @@ const renderContactHeader = list => {
       <View>
         <FlatList
           keyExtractor={keyExtractor}
-          data={list}
+          data={panasList}
           renderItem={renderItem}
         />
       </View>

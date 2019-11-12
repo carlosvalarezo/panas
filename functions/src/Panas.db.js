@@ -20,6 +20,8 @@ const PanasDb = {
         medium: 'https://randomuser.me/api/portraits/med/women/52.jpg',
         thumbnail: 'https://randomuser.me/api/portraits/thumb/women/52.jpg',
       },
+      bio:
+        'Best friend is a trainee tradesperson called Lulu Robertson. They get on well most of the time. He also hangs around with Everett Stevens and Gary Cox. They enjoy vandalising bus stops together.',
     },
     {
       gender: 'female',
@@ -41,6 +43,8 @@ const PanasDb = {
         medium: 'https://randomuser.me/api/portraits/med/women/48.jpg',
         thumbnail: 'https://randomuser.me/api/portraits/thumb/women/48.jpg',
       },
+      bio:
+        'Best friend is a trainee tradesperson called Lulu Robertson. They get on well most of the time. He also hangs around with Everett Stevens and Gary Cox. They enjoy vandalising bus stops together.',
     },
     {
       gender: 'female',
@@ -63,6 +67,8 @@ const PanasDb = {
         medium: 'https://randomuser.me/api/portraits/med/women/82.jpg',
         thumbnail: 'https://randomuser.me/api/portraits/thumb/women/82.jpg',
       },
+      bio:
+        'Best friend is a trainee tradesperson called Lulu Robertson. They get on well most of the time. He also hangs around with Everett Stevens and Gary Cox. They enjoy vandalising bus stops together.',
     },
     {
       gender: 'female',
@@ -84,6 +90,8 @@ const PanasDb = {
         medium: 'https://randomuser.me/api/portraits/med/women/69.jpg',
         thumbnail: 'https://randomuser.me/api/portraits/thumb/women/69.jpg',
       },
+      bio:
+        'Best friend is a trainee tradesperson called Lulu Robertson. They get on well most of the time. He also hangs around with Everett Stevens and Gary Cox. They enjoy vandalising bus stops together.',
     },
     {
       gender: 'female',
@@ -105,6 +113,8 @@ const PanasDb = {
         medium: 'https://randomuser.me/api/portraits/med/women/9.jpg',
         thumbnail: 'https://randomuser.me/api/portraits/thumb/women/9.jpg',
       },
+      bio:
+        'Best friend is a trainee tradesperson called Lulu Robertson. They get on well most of the time. He also hangs around with Everett Stevens and Gary Cox. They enjoy vandalising bus stops together.',
     },
     {
       gender: 'female',
@@ -126,6 +136,8 @@ const PanasDb = {
         medium: 'https://randomuser.me/api/portraits/med/women/14.jpg',
         thumbnail: 'https://randomuser.me/api/portraits/thumb/women/14.jpg',
       },
+      bio:
+        'Best friend is a trainee tradesperson called Lulu Robertson. They get on well most of the time. He also hangs around with Everett Stevens and Gary Cox. They enjoy vandalising bus stops together.',
     },
     {
       gender: 'female',
@@ -148,6 +160,8 @@ const PanasDb = {
         medium: 'https://randomuser.me/api/portraits/med/women/62.jpg',
         thumbnail: 'https://randomuser.me/api/portraits/thumb/women/62.jpg',
       },
+      bio:
+        'Best friend is a trainee tradesperson called Lulu Robertson. They get on well most of the time. He also hangs around with Everett Stevens and Gary Cox. They enjoy vandalising bus stops together.',
     },
     {
       gender: 'male',
@@ -169,6 +183,8 @@ const PanasDb = {
         medium: 'https://randomuser.me/api/portraits/med/men/17.jpg',
         thumbnail: 'https://randomuser.me/api/portraits/thumb/men/17.jpg',
       },
+      bio:
+        'Best friend is a trainee tradesperson called Lulu Robertson. They get on well most of the time. He also hangs around with Everett Stevens and Gary Cox. They enjoy vandalising bus stops together.',
     },
     {
       gender: 'female',
@@ -190,7 +206,8 @@ const PanasDb = {
         medium: 'https://randomuser.me/api/portraits/med/women/40.jpg',
         thumbnail: 'https://randomuser.me/api/portraits/thumb/women/40.jpg',
       },
-      nat: 'CA',
+      bio:
+        'Best friend is a trainee tradesperson called Lulu Robertson. They get on well most of the time. He also hangs around with Everett Stevens and Gary Cox. They enjoy vandalising bus stops together.',
     },
     {
       gender: 'female',
@@ -212,6 +229,8 @@ const PanasDb = {
         medium: 'https://randomuser.me/api/portraits/med/women/26.jpg',
         thumbnail: 'https://randomuser.me/api/portraits/thumb/women/26.jpg',
       },
+      bio:
+        'Best friend is a trainee tradesperson called Lulu Robertson. They get on well most of the time. He also hangs around with Everett Stevens and Gary Cox. They enjoy vandalising bus stops together.',
     },
     {
       gender: 'male',
@@ -233,6 +252,8 @@ const PanasDb = {
         medium: 'https://randomuser.me/api/portraits/med/men/95.jpg',
         thumbnail: 'https://randomuser.me/api/portraits/thumb/men/95.jpg',
       },
+      bio:
+        'Best friend is a trainee tradesperson called Lulu Robertson. They get on well most of the time. He also hangs around with Everett Stevens and Gary Cox. They enjoy vandalising bus stops together.',
     },
     {
       gender: 'female',
@@ -254,6 +275,8 @@ const PanasDb = {
         medium: 'https://randomuser.me/api/portraits/med/women/18.jpg',
         thumbnail: 'https://randomuser.me/api/portraits/thumb/women/18.jpg',
       },
+      bio:
+        'Best friend is a trainee tradesperson called Lulu Robertson. They get on well most of the time. He also hangs around with Everett Stevens and Gary Cox. They enjoy vandalising bus stops together.',
     },
     {
       gender: 'male',
@@ -275,6 +298,8 @@ const PanasDb = {
         medium: 'https://randomuser.me/api/portraits/med/men/16.jpg',
         thumbnail: 'https://randomuser.me/api/portraits/thumb/men/16.jpg',
       },
+      bio:
+        'Best friend is a trainee tradesperson called Lulu Robertson. They get on well most of the time. He also hangs around with Everett Stevens and Gary Cox. They enjoy vandalising bus stops together.',
     },
   ],
   info: {
