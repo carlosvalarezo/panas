@@ -1,36 +1,62 @@
-import React, {Component} from 'react';
+import React, {useState, useEffect} from 'react';
 import {ScrollView, Text, View, FlatList} from 'react-native';
-import {Icon, Avatar, ListItem, Card} from 'react-native-elements';
+import {Icon, Avatar, ListItem} from 'react-native-elements';
 import styles from './styles/Profile.styles';
+import JavaActivity from './JavaActivity';
 
-const list = [
-  {
-    name: 'Amy Farha',
-    avatar_url:
-      'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
-    subtitle: 'Vice President',
-  },
-  {
-    name: 'Chris Jackson',
-    avatar_url:
-      'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
-    subtitle: 'Vice Chairman',
-  },
-];
+import {Navigation} from 'react-native-navigation';
+
+const axios = require('axios').default;
+
+const processPanasList = panas => {
+  return panas.map(pana => {
+    const {name, picture, location} = pana;
+    return {
+      name: name.first + ' ' + name.last,
+      avatar_url: picture.medium,
+      location: location.country,
+    };
+  });
+};
+
+const openProfile = props => {
+  Navigation.push(props.componentId, {
+    component: {
+      name: 'navigation.Profile',
+      options: {
+        topBar: {
+          visible: false,
+          height: 0,
+        },
+      },
+    },
+  });
+};
 
 const keyExtractor = (item, index) => index.toString();
 
 const renderItem = ({item}) => (
   <ListItem
     title={item.name}
-    subtitle={item.subtitle}
+    subtitle={item.location}
     leftAvatar={{source: {uri: item.avatar_url}}}
     bottomDivider
-    chevron
+    button
+    chevron={
+      <Icon
+        size={30}
+        type="font-awesome"
+        color="#3B5A98"
+        name="angle-right"
+        onPress={() => console.warn('facebook')}
+      />
+    }
+    onPress={() => console.warn('facebook')}
   />
 );
 
-const renderContactHeader = () => {
+const renderContactHeader = list => {
+  console.warn(list);
   //   const {avatar, name, bio} = this.props;
   return (
     <View>
@@ -57,52 +83,64 @@ const renderContactHeader = () => {
         <View style={styles.socialRow}>
           <View style={styles.socialIcon}>
             <Icon
-              size={30}
-              type="font-awesome"
+              size={40}
+              type="entypo"
               color="#3B5A98"
-              name="heartbeat"
-              onPress={() => console.log('facebook')}
+              name="facebook"
+              onPress={() => console.warn('hello')}
             />
           </View>
           <View style={styles.socialIcon}>
             <Icon
-              size={30}
+              size={40}
               type="entypo"
               color="#56ACEE"
               name="twitter-with-circle"
               onPress={() => console.log('twitter')}
             />
           </View>
-          <View>
+          <View style={styles.socialIcon}>
             <Icon
-              size={30}
+              size={40}
               type="entypo"
               color="#DD4C39"
-              name="google--with-circle"
-              onPress={() => console.log('google')}
+              name="globe"
+              onPress={() => JavaActivity.openJavaActivity()}
             />
           </View>
         </View>
-        <Text>Panas</Text>
       </View>
       <View>
-        <Card title="Panas">
-          <FlatList
-            keyExtractor={keyExtractor}
-            data={list}
-            renderItem={renderItem}
-          />
-        </Card>
+        <FlatList
+          keyExtractor={keyExtractor}
+          data={list}
+          renderItem={renderItem}
+        />
       </View>
     </View>
   );
 };
 
 const Profile = () => {
+  const [list, setList] = useState([]);
+  useEffect(() => {
+    axios
+      .post('https://us-central1-panas-274ee.cloudfunctions.net/panasList')
+      .then(function(response) {
+        const {data} = response;
+        const {panas} = data.panas;
+        if (panas) {
+          setList(processPanasList(panas));
+        }
+      })
+      .catch(function(error) {
+        console.warn(error);
+      });
+  }, []);
   return (
     <ScrollView style={styles.scroll}>
       <View style={styles.container}>
-        <View style={styles.cardContainer}>{renderContactHeader()}</View>
+        <View style={styles.cardContainer}>{renderContactHeader(list)}</View>
       </View>
     </ScrollView>
   );

@@ -1,5 +1,5 @@
 const PanasDb = {
-  results: [
+  panas: [
     {
       gender: 'female',
       name: {

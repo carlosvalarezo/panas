@@ -26,7 +26,7 @@ public class JavaActivityModule extends ReactContextBaseJavaModule {
         ReactApplicationContext activity = getReactApplicationContext();
 
 
-        Intent rctActivityIntent = new Intent(activity, JavaActivity.class);
+        Intent rctActivityIntent = new Intent(activity, PanasMapActivity.class);
         if(rctActivityIntent.resolveActivity(activity.getPackageManager()) !=null ) {
             rctActivityIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             activity.startActivity(rctActivityIntent);

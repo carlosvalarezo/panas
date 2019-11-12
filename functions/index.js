@@ -19,12 +19,18 @@ exports.addMessage = functions.https.onCall(data => {
 
 exports.panasLogin = functions.https.onRequest((request, response) => {
   const {username, password} = request.body;
-  if (username === 'myusername' && password === 'mysuperpassword123') {
+  if (username === 'abc' && password === 'abc') {
     response.status(200).json({
-      message: success,
+      message: true,
     });
   }
   response.status(200).json({
-    message: 'error on login',
+    message: false,
+  });
+});
+
+exports.panasList = functions.https.onRequest((request, response) => {
+  response.status(200).json({
+    panas: Panas(),
   });
 });
