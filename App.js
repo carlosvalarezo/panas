@@ -9,7 +9,7 @@
 import React, {useState} from 'react';
 
 import styles from './src/styles';
-import {Text, View, TextInput} from 'react-native';
+import {Text, View, TextInput, Alert} from 'react-native';
 import {Button} from 'react-native-elements';
 import {Navigation} from 'react-native-navigation';
 
@@ -26,6 +26,8 @@ const login = (props, username, password) => {
       const {message} = data;
       if (message) {
         openRNView(props);
+      } else {
+        Alert.alert('login error');
       }
     })
     .catch(function(error) {

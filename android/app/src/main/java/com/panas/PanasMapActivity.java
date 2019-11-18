@@ -39,18 +39,34 @@ public class PanasMapActivity extends FragmentActivity implements OnMapReadyCall
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        double latitude = (Math.random()*((-34+36)+1))-34;
-        double longitude = (Math.random()*((151-145)+1))+145;
+        double latitude = (Math.random()*((-0.20-78)+0.5))-78;
+        double longitude = (Math.random()*((-0.20-78)+0.5))-77;
 
-        System.out.println("**********" + latitude);
-        System.out.println("**********" + longitude);
+        double latitude1 = (Math.random()*((-0.20-78)+0.5))-78;
+        double longitude1 = (Math.random()*((-0.20-78)+0.5))-77;
+
+        double latitude2 = (Math.random()*((-0.20-78)+0.5))-78;
+        double longitude2 = (Math.random()*((-0.20-78)+0.5))-77;
+
+        double latitude3 = (Math.random()*((-0.20+36)+0.5))-78;
+        double longitude3 = (Math.random()*((-0.20-78)+0.5))-77;
+
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        LatLng other = new LatLng(latitude, longitude);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.addMarker(new MarkerOptions().position(other).title("Marker in Other"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(other, 5));
+        LatLng sydney = new LatLng(-0.20, -78);
+        LatLng loja = new LatLng(latitude, longitude);
+        LatLng cuenca = new LatLng(latitude2, longitude2);
+        LatLng xxx = new LatLng(latitude1, longitude1);
+        LatLng ambato = new LatLng(latitude3, longitude3);
+        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Quito"));
+        mMap.addMarker(new MarkerOptions().position(loja).title("Marker in loja"));
+        mMap.addMarker(new MarkerOptions().position(cuenca).title("Marker in cuneca"));
+        mMap.addMarker(new MarkerOptions().position(ambato).title("Marker in ambato"));
+        mMap.addMarker(new MarkerOptions().position(ambato).title("Marker in xxxx"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loja, 6));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(cuenca, 6));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ambato, 6));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(xxx, 6));
 //        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(other, 5));
     }
 }
